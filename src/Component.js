@@ -14,7 +14,9 @@ var Component = (store, name, options) => {
         }
     };
 
-    Object.keys(options).forEach(option => reactClass[option] = options[option]);
+    Object.keys(options).forEach(option => 
+        reactClass[option] = (...args) => options[option].apply(reactClass, [store.data].concat(args))
+    );
 
     return React.createClass(reactClass);
 };

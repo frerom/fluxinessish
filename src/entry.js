@@ -32,16 +32,16 @@ var numberStore = Store(cursor, actions, {
 
 /*
     Component takes a store. When ever the store is updated the component
-    is updated. The state from the store can be found in this.state.data
+    is updated. All component functions is called with the store state
 */
 var Numbers = Component(numberStore, 'Numbers', {
-    click() {
-        actions.addNumber(this.state.data.get('numbers').size + 1);
+    click(state) {
+        actions.addNumber(state.get('numbers').size + 1);
     },
-    render() {
+    render(state) {
         return (
             <div>
-                <div>{this.state.data.get('numbers').join(',')}</div>
+                <div>{state.get('numbers').join(',')}</div>
                 <button onClick={this.click}>Add number</button>
             </div>
         );
